@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'Artist/artist_home.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>View Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+{% block body %}
+<h1 align="center" class="mb-4">VIEW PRODUCT</h1>
+<table border="3" class="table table-bordered table-hover w-75" align="center" style="border-color: #3b3232">
+    <tr>
+        <td style="background-color: black;color: goldenrod; width: 9%">Serial No</td>
+        <td  style="background-color: black;color: goldenrod;">Name</td>
+        <td  style="background-color: black;color: goldenrod;width: 450px">Description</td>
+        <td  style="background-color: black;color: goldenrod;">Photo</td>
+        <td  style="background-color: black;color: goldenrod;">Price</td>
+        <td  style="background-color: black;color: goldenrod;"></td>
+        <td  style="background-color: black;color: goldenrod;"></td>
+    </tr>
+    {% for i in data7 %}
+        <tr>
+            <td  style="background-color: black;color: goldenrod;">{{ forloop.counter }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.name }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.description }}</td>
+            <td  style="background-color: black;color: goldenrod;"><img src="{{ i.image }}" width="150px" height="150px"></td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.price }}</td>
+            <td  style="background-color: black;color: goldenrod;"><a href="/eddp/{{ i.id }}#zm" class="btn btn-success">Edit</a></td>
+            <td  style="background-color: black;color: goldenrod;"><a href="/dltp/{{ i.id }}" class="btn btn-success" onclick="return confirm('Are You Sure!')">Delete</a></td>
+
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+</html>

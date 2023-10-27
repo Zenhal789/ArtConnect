@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'Artist/artist_home.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>View Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+{% block body %}
+<h1 align="center" class="mt-4">VIEW PAYMENT</h1>
+<table border="3" align="center" class="table table-bordered table-hover w-75 mt-4" style="border-color: #3b3232">
+    <tr>
+        <td  style="background-color: black;color: goldenrod;width: 10%">Serial No</td>
+        <td  style="background-color: black;color: goldenrod;width: 11%">Date</td>
+        <td  style="background-color: black;color: goldenrod;width: 15%">Product</td>
+        <td  style="background-color: black;color: goldenrod;">Price</td>
+        <td  style="background-color: black;color: goldenrod;">Name</td>
+        <td  style="background-color: black;color: goldenrod; width: 25%">Address</td>
+        <td  style="background-color: black;color: goldenrod;">Card No</td>
+        <td  style="background-color: black;color: goldenrod;">Phone</td>
+
+    </tr>
+    {% for i in data %}
+        <tr>
+        <td  style="background-color: black;color: goldenrod;">{{ forloop.counter }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.purchase_date }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.PRODUCT.name }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.price }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.BUYER.Firstname }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.address }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.card_number }}</td>
+            <td  style="background-color: black;color: goldenrod;">{{ i.BUYER.phone }}</td>
+
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+</html>

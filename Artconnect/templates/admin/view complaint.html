@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'admin/admin_home.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>View Complaint</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+{% block body %}
+<h1 align="center" class="mt-4">VIEW COMPLAINT</h1>
+<table border="3" align="center" class="table table-bordered table-hover mt-4 ">
+    <tr>
+        <td>Serial No</td>
+        <td>Date</td>
+        <td>Name</td>
+        <td>Complaint</td>
+        <td>Status</td>
+        <td>Reply</td>
+    </tr>
+    {% for i in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.date }}</td>
+            <td>{{ i.USER.Firstname }}</td>
+            <td>{{ i.complaint }}</td>
+            <td>{{ i.status }}</td>
+            <td>{% if i.status == 'pending' %}<a style="color: white" href="/sentreply/{{ i.id }}#idd" CLASS="btn btn-success">REPLY</a>{% else %}{{ i.reply }}{% endif %}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+</html>

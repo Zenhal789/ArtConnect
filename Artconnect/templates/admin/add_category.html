@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:C="http://www.w3.org/1999/xhtml">
+{% extends 'admin/admin_home.html' %}
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Add Category</title>
+</head>
+{% block body %}
+<h1 align="center">ADD CATEGORY</h1>
+<form method="post" action="/add_catp/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="3" class="table table-bordered table-hover " align="center">
+        <tr>
+            <td>Enter Category </td>
+            <th><input type="text" name="category" class="form-control" required></th>
+        </tr>
+            <tr>
+                <td></td>
+            <td align="center">
+                <input type="submit" class="btn btn-success">
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
+</html>

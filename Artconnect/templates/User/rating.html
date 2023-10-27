@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+{% extends 'User/user_home.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Rating</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+{% block body %}
+<form method="post" action="/ratingp" enctype="multipart/form-data">
+        {% csrf_token %}
+<h1 align="center" class="mt-4">RATING</h1>
+<table align="center" border="3" class="table table-bordered table-hover w-50 mt-4"style="border-color: #3b3232">
+
+
+    <tr>
+        <td style="background-color: black;color: goldenrod">Artist</td>
+        <td style="background-color: black;color: goldenrod">
+             <select name="artist" class="form-control" style="background-color: black;color: goldenrod">
+                 <option style="background-color: black;color: goldenrod" value="" disabled selected>Select a Artist</option>
+                        {% for i in data %}
+                        <option style="background-color: black;color: goldenrod"value="{{ i.id }}">{{ i.Firstname }}</option>
+                        {% endfor %}
+                    </select>
+        </td>
+    </tr>
+<tr>
+    <td style="background-color: black;color: goldenrod">Product</td>
+    <td style="background-color: black;color: goldenrod">
+         <select style="background-color: black;color: goldenrod" name="product" class="form-control">
+             <option style="background-color: black;color: goldenrod" value="" disabled selected>Select a Product</option>
+                        {% for i in data8 %}
+                        <option style="background-color: black;color: goldenrod"value="{{ i.id }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+    </td>
+</tr>
+    <tr>
+        <td style="background-color: black;color: goldenrod">Rate Product</td>
+        <td style="background-color: black;color: goldenrod">
+             <div style="background-color: black;color: goldenrod" class="star-rating">
+        <input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
+        <input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
+        <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+        <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+        <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+             </div>
+        </td>
+    </tr>
+<tr>
+    <td style="background-color: black;color: goldenrod">Comment</td>
+    <td style="background-color: black;color: goldenrod"><textarea name="comment" class="form-control"></textarea></td>
+</tr>
+<tr>
+    <td style="background-color: black;color: goldenrod"></td>
+    <td align="center" style="background-color: black;color: goldenrod"><input type="submit" class="btn btn-success"></td>
+</tr>
+</table>
+</form>
+
+
+
+
+    <style>
+        .star-rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            text-align: center;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 24px;
+            padding: 0 5px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .star-rating label:before {
+            content: '\2605';
+            color: #ccc;
+        }
+
+        .star-rating input:checked ~ label:before {
+            color: #fdd835;
+        }
+    </style>
+{% endblock %}
+</html>

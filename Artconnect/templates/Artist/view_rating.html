@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'Artist/artist_home.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Rating</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+{% block body %}
+{#<body>#}
+    <h1 align="center" class="mt-4">VIEW RATING</h1>
+    <table border="3" align="center" class="table table-bordered table-hover mt-4 w-75" style="border-color: #3b3232">
+        <tr>
+            <td style="background-color: black;color: goldenrod">Serial No</td>
+            <td style="background-color: black;color: goldenrod">Date</td>
+            <td style="background-color: black;color: goldenrod">Name</td>
+            <td style="background-color: black;color: goldenrod">Product</td>
+            <td style="background-color: black;color: goldenrod">Rating</td>
+            <td style="background-color: black;color: goldenrod">Comments</td>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td style="background-color: black;color: goldenrod">{{ forloop.counter }}</td>
+            <td style="background-color: black;color: goldenrod">{{ i.date }}</td>
+            <td style="background-color: black;color: goldenrod">{{ i.USER.Firstname }}</td>
+            <td style="background-color: black;color: goldenrod">{{ i.PRODUCT.name }}</td>
+            <td style="background-color: black;color: goldenrod">
+                <div style="background-color: black;color: goldenrod" class="rating" data-rating="{{ i.rate }}"></div>
+            </td>
+            <td style="background-color: black;color: goldenrod">{{ i.comments }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <style>
+        .rating .star {
+            color: #FFD700;
+        }
+
+        .rating .star-empty {
+            color: #ccc;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            function generateStarRating() {
+                $('.rating').each(function() {
+                    const ratingValue = parseFloat($(this).data('rating'));
+                    const container = $(this);
+                    container.empty();
+                    for (let i = 1; i <= 5; i++) {
+                        const star = $('<span class="star">&#9733;</span>');
+                        const starEmpty = $('<span class="star-empty">&#9734;</span>');
+                        if (i <= ratingValue) {
+                            container.append(star);
+                        } else {
+                            container.append(starEmpty);
+                        }
+                    }
+                });
+            }
+            generateStarRating();
+        });
+    </script>
+{#    </body>#}
+{% endblock %}
+</html>
+

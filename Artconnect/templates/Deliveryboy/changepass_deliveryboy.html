@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'Deliveryboy/Deliveryboy_home.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Change Password</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+{% block body %}
+<h1 align="center" class="mb-4">CHANGE PASSWORD</h1>
+<form method="post" action="/cpdp" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="3" class="table table-bordered table-hover w-75" align="center" style="border-color: #3b3232;">
+        <tr>
+            <td  style="background-color: black;color: goldenrod;"><p>Enter your Current Password &nbsp;<input type="password" name="cpass" class="form-control m-auto" required></p> </td>
+        </tr>
+        <tr>
+            <td  style="background-color: black;color: goldenrod;"><p>Enter your New Password &emsp;&ensp;<input type="password" id="npass" name="npass" class="form-control" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$"
+                   title="Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character, and be at least 8 characters long."></p> </td>
+        </tr>
+        <tr>
+            <td  style="background-color: black;color: goldenrod;"><p>Confirm your New Password &nbsp;<input type="password" id="cnpass" name="cnpass" class="form-control" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$"
+                   title="Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character, and be at least 8 characters long."></p> </td>
+        </tr>
+        <tr align="center">
+            <td  style="background-color: black;color: goldenrod;"><input type="submit" value="Submit" class="btn btn-success" id="submitButton"></td>
+        </tr>
+        <tr>
+            <td  style="background-color: black;color: goldenrod;">
+                <div id="passwordMatchMessage" style="color: red;"></div>
+            </td>
+        </tr>
+    </table>
+</form>
+<!-- Javascript Password Validation Code -->
+
+<script>
+    // Get references to the password fields, submit button, and message div
+    const passwordField = document.getElementById('npass');
+    const confirmPasswordField = document.getElementById('cnpass');
+    const submitButton = document.getElementById('submitButton');
+    const passwordMatchMessage = document.getElementById('passwordMatchMessage');
+
+    // Add an input event listener to the confirmPassword field
+    confirmPasswordField.addEventListener('input', function () {
+        const password = passwordField.value;
+        const confirmPassword = confirmPasswordField.value;
+
+        // Check if the passwords match
+        if (password === confirmPassword) {
+            passwordMatchMessage.textContent = 'Passwords match';
+            passwordMatchMessage.style.color = 'green';
+            submitButton.disabled = false; // Enable the submit button
+        } else {
+            passwordMatchMessage.textContent = 'Passwords do not match';
+            passwordMatchMessage.style.color = 'red';
+            submitButton.disabled = true; // Disable the submit button
+        }
+    });
+</script>
+<!-- Javascript Password Validation Code end -->
+
+{% endblock %}
+</html>
